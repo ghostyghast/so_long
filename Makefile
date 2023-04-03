@@ -1,10 +1,7 @@
-SRCS = $(wildcard *.c) 
+SRCS = $(wildcard Resources/*.c) \
+		$(wildcard Resources/libft/*.c)
 
 OBJS = $(SRCS:.c=.o)
-
-OBJS_DIR = objs/
-
-OBJS_PREFIXED = $(addprefix $(OBJS_DIR), $(OBJS))
 
 CC = gcc
 
@@ -14,24 +11,30 @@ MLX = -lmlx -framework OpenGL -framework AppKit
 
 LEAK = -Wall -Werror -Wextra -fsanitize=address -g3
 
+RAW = gcc
+
 NAME = so_long
 
-$(OBJS_DIR)%.o : %.c
-	@mkdir -p $(OBJS_DIR)
+%.o : %.c
 	@$(CC) -c -o $@ $< $(CFLAGS)
 
-$(NAME): $(OBJS_PREFIXED)
+$(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(MLX) -o $(NAME) $(SRCS)
 
 $(LEAK): 
 	@$(CC) $(LEAK) $(MLX) -o $(NAME) $(SRCS)
 
+$(RAW):
+	@$(RAW) $(MLX) -o $(NAME) $(SRCS)
+
 all: $(NAME)
 
 leak: $(LEAK)
 
+raw: $(RAW)
+
 clean: 
-	@rm -f $(OBJS_PREFIXED)
+	@rm -f $(OBJS)
 	@echo "clean!"
 	
 
