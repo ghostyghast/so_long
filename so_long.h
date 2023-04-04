@@ -30,25 +30,10 @@ typedef struct s_pce
 	int	p;
 	int	c;
 	int	e;
+	int	x;
+	int	y;
+
 }	t_pce;
-
-
-typedef struct s_pix
-{
-	void	*img;
-	void	*addr;	
-	int		bits;
-	int		line;
-	int		endian;
-}			t_pix;
-
-typedef struct s_img
-{
-	void	*img;
-	char	*path;
-	int		width;
-	int		height;
-}			t_img;
 
 typedef struct s_data
 {
@@ -56,4 +41,27 @@ typedef struct s_data
 	void	*win;
 }	t_data;
 
+void	*ft_calloc(size_t count, size_t size);
+void	*ft_bzero(void *s, size_t n);
+
+int		parser(char *map);
+int		strline(char *str);
+
 #endif
+
+// typedef struct s_pix
+// {
+// 	void	*img;
+// 	void	*addr;	
+// 	int		bits;
+// 	int		line;
+// 	int		endian;
+// }			t_pix;
+
+// typedef struct s_img
+// {
+// 	void	*img;
+// 	char	*path;
+// 	int		width;
+// 	int		height;
+// }			t_img;

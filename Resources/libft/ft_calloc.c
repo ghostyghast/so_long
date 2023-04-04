@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/30 16:50:10 by amaligno          #+#    #+#             */
-/*   Updated: 2023/04/04 17:42:06 by amaligno         ###   ########.fr       */
+/*   Created: 2022/10/14 16:49:18 by amaligno          #+#    #+#             */
+/*   Updated: 2023/04/04 15:22:07 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../../so_long.h"
 
-// void	so_long(char *map)
-// {
-// 	if (parser(map))
-
-// 	return ;
-// }
-
-int	main(int c, char **strs)
+void	*ft_calloc(size_t count, size_t size)
 {
-	if (c == 2)
-	{
-		if (parser(strs[1]))
-		{
-			ft_printf("valid map!\n");
-			return (0);
-		}
-		ft_printf("invalid map :( \n");
-		return (0);
-	}
-	ft_printf("Not enough args\n");
-	return (0);
+	void	*str;
+
+	if (size != 0 && count >= SIZE_MAX / size)
+		return (NULL);
+	str = malloc(size * count);
+	if (!str)
+		return (NULL);
+	ft_bzero(str, count * size);
+	return (str);
 }
