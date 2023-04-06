@@ -6,7 +6,7 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:09:40 by amaligno          #+#    #+#             */
-/*   Updated: 2023/04/06 16:36:00 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/04/06 20:04:55 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ char	**str_alloc(char *map, int *lw)
 
 	i = -1;
 	fd = open(map, O_RDONLY);
+	if (fd < 0)
+		return (NULL);
 	while (get_next_line(fd))
 		*lw += 1;
 	close(fd);
@@ -101,10 +103,13 @@ int	parser(char *map)
 
 	lw = 0;
 	str = str_alloc(map, &lw);
+	if (!str)
+		return (0);
 	if (pce_check(str, &pce) && line_check(str, lw))
 	{
 		if (path_check(str, lw, pce))
 			return (1);
 	}
+	freemap(str);
 	return (0);
 }

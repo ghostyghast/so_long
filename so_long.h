@@ -25,18 +25,18 @@
 // {
 // }
 
+typedef struct s_data
+{
+	void	*mlx;
+	void	*win;
+}	t_data;
+
 typedef struct s_pce
 {
 	int	p;
 	int	c;
 	int	e;
 }	t_pce;
-
-typedef struct s_data
-{
-	void	*mlx;
-	void	*win;
-}	t_data;
 
 typedef struct s_pos
 {
@@ -59,11 +59,13 @@ typedef struct s_info
 	int	exit;
 }	t_info;
 
-char	*get_next_line(int fd);
 int		ft_printf(const char *str, ...);
+char	*get_next_line(int fd);
 void	*ft_calloc(size_t count, size_t size);
 void	*ft_bzero(void *s, size_t n);
 
+void	freemap(char **str);
+void	render(char *str);
 int		path_check(char **map, int lw, t_pce pce);
 int		parser(char *map);
 int		strline(char *str);

@@ -6,7 +6,7 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:07:57 by amaligno          #+#    #+#             */
-/*   Updated: 2023/04/06 16:38:47 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/04/06 19:59:00 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ void	get_start(char **map, t_flood *fl, int lw)
 	}
 }
 
+int	valid_char(char c)
+{
+	if (c == 'E' || c == '0' || c == 'C')
+		return (1);
+	return (0);
+}
+
 void	checker(char **map, t_flood *fl, t_pos *p, t_info *info)
 {
 	fl->b_x = p->x;
@@ -39,13 +46,6 @@ void	checker(char **map, t_flood *fl, t_pos *p, t_info *info)
 	else if (map[fl->b_y][fl->b_x] == 'C')
 		info->counter += 1;
 	map[fl->b_y][fl->b_x] = 'F';
-}
-
-int	valid_char(char c)
-{
-	if (c == 'E' || c == '0' || c == 'C')
-		return (1);
-	return (0);
 }
 
 void	floodfill(char **map, t_flood fl, t_pos p, t_info *info)
