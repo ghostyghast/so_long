@@ -18,8 +18,8 @@
 # include <mlx.h>
 # include <stdio.h>
 # include <fcntl.h>
-# include "Resources/libft/ft_printf.h"
-# include "Resources/libft/get_next_line.h"
+// # include "Resources/libft/ft_printf.h"
+// # include "Resources/libft/get_next_line.h"
 
 // enum
 // {
@@ -30,9 +30,6 @@ typedef struct s_pce
 	int	p;
 	int	c;
 	int	e;
-	int	x;
-	int	y;
-
 }	t_pce;
 
 typedef struct s_data
@@ -41,9 +38,33 @@ typedef struct s_data
 	void	*win;
 }	t_data;
 
+typedef struct s_pos
+{
+	int	x;
+	int	y;
+}	t_pos;
+
+typedef struct s_flood
+{
+	int	s_x;
+	int	s_y;
+	int	b_y;
+	int	b_x;
+}	t_flood;
+
+typedef struct s_info
+{
+	int	counter;
+	int	coins;
+	int	exit;
+}	t_info;
+
+char	*get_next_line(int fd);
+int		ft_printf(const char *str, ...);
 void	*ft_calloc(size_t count, size_t size);
 void	*ft_bzero(void *s, size_t n);
 
+int		path_check(char **map, int lw, t_pce pce);
 int		parser(char *map);
 int		strline(char *str);
 

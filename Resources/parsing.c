@@ -6,36 +6,37 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:09:40 by amaligno          #+#    #+#             */
-/*   Updated: 2023/04/04 18:49:19 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/04/06 16:36:00 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int	pce_check(char **str)
+int	pce_check(char **str, t_pce *pce)
 {
-	t_pce	pce;
+	t_pos	xy;
 
-	pce.y = 0;
-	pce.p = 0;
-	pce.e = 0;
-	pce.c = 0;
-	while (str[pce.y])
+	xy.y = -1;
+	pce->p = 0;
+	pce->e = 0;
+	pce->c = 0;
+	while (str[++xy.y])
 	{
-		pce.x = 0;
-		while ((str[pce.y][pce.x] != '\0') && (str[pce.y][pce.x] != '\n'))
+		xy.x = 0;
+		while ((str[xy.y][xy.x] != '\0') && (str[xy.y][xy.x] != '\n'))
 		{
-			if (str[pce.y][pce.x] == 'P')
-				pce.p += 1;
-			else if (str[pce.y][pce.x] == 'C')
-				pce.c += 1;
-			else if (str[pce.y][pce.x] == 'E')
-				pce.e += 1;
-		pce.x++;
+			if (str[xy.y][xy.x] == 'P')
+				pce->p += 1;
+			else if (str[xy.y][xy.x] == 'C')
+				pce->c += 1;
+			else if (str[xy.y][xy.x] == 'E')
+				pce->e += 1;
+			else if (str[xy.y][xy.x] != '1' && str[xy.y][xy.x] != '0')
+				return (0);
+		xy.x++;
 		}
-	pce.y++;
 	}
-	if ((pce.e != 1) || (pce.p != 1) || (pce.c < 1))
+	if ((pce->e != 1) || (pce->p != 1) || (pce->c < 1))
 		return (0);
 	return (1);
 }
@@ -96,12 +97,13 @@ int	parser(char *map)
 {
 	char	**str;
 	int		lw;
+	t_pce	pce;
 
 	lw = 0;
 	str = str_alloc(map, &lw);
-	if (pce_check(str) && line_check(str, lw))
+	if (pce_check(str, &pce) && line_check(str, lw))
 	{
-		// if (path_check(str))
+		if (path_check(str, lw, pce))
 			return (1);
 	}
 	return (0);
