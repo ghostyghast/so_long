@@ -6,7 +6,7 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 16:50:10 by amaligno          #+#    #+#             */
-/*   Updated: 2023/04/06 20:36:39 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/04/12 16:17:20 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int c, char **strs)
 		if (parser(strs[1]))
 		{
 			ft_printf("valid map!\n");
-			render(strs[1]);
+			// render(strs[1]);
 			return (0);
 		}
 		ft_printf("Error\n");

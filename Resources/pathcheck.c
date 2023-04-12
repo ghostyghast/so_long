@@ -6,7 +6,7 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:07:57 by amaligno          #+#    #+#             */
-/*   Updated: 2023/04/06 19:59:00 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/04/12 16:26:28 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,12 @@ void	get_start(char **map, t_flood *fl, int lw)
 	}
 }
 
-int	valid_char(char c)
+int	valid_char(char c, t_info *info)
 {
-	if (c == 'E' || c == '0' || c == 'C')
+	if (c == '0' || c == 'C')
 		return (1);
+	else if (c == 'E')
+		info->exit = 1;
 	return (0);
 }
 
@@ -41,9 +43,7 @@ void	checker(char **map, t_flood *fl, t_pos *p, t_info *info)
 {
 	fl->b_x = p->x;
 	fl->b_y = p->y;
-	if (map[fl->b_y][fl->b_x] == 'E')
-		info->exit = 1;
-	else if (map[fl->b_y][fl->b_x] == 'C')
+	if (map[fl->b_y][fl->b_x] == 'C')
 		info->counter += 1;
 	map[fl->b_y][fl->b_x] = 'F';
 }
@@ -51,25 +51,25 @@ void	checker(char **map, t_flood *fl, t_pos *p, t_info *info)
 void	floodfill(char **map, t_flood fl, t_pos p, t_info *info)
 {
 	checker(map, &fl, &p, info);
-	if ((fl.b_y > 0) && (valid_char(map[fl.b_y - 1][fl.b_x])))
+	if ((fl.b_y > 0) && (valid_char(map[fl.b_y - 1][fl.b_x], info)))
 	{
 		p.x = fl.b_x;
 		p.y = fl.b_y - 1;
 		floodfill(map, fl, p, info);
 	}
-	if (fl.b_y < fl.s_y && valid_char(map[fl.b_y + 1][fl.b_x]))
+	if (fl.b_y < fl.s_y && valid_char(map[fl.b_y + 1][fl.b_x], info))
 	{
 		p.x = fl.b_x;
 		p.y = fl.b_y + 1;
 		floodfill(map, fl, p, info);
 	}
-	if (fl.b_x < fl.s_x && valid_char(map[fl.b_y][fl.b_x + 1]))
+	if (fl.b_x < fl.s_x && valid_char(map[fl.b_y][fl.b_x + 1], info))
 	{
 		p.x = fl.b_x + 1;
 		p.y = fl.b_y;
 		floodfill(map, fl, p, info);
 	}
-	if (fl.b_x > 0 && valid_char(map[fl.b_y][fl.b_x - 1]))
+	if (fl.b_x > 0 && valid_char(map[fl.b_y][fl.b_x - 1], info))
 	{
 		p.x = fl.b_x - 1;
 		p.y = fl.b_y;

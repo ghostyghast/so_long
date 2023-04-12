@@ -1,4 +1,4 @@
- /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:25:03 by amaligno          #+#    #+#             */
-/*   Updated: 2023/03/29 15:54:47 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/04/12 18:20:37 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,14 @@ typedef struct s_info
 	int	exit;
 }	t_info;
 
+typedef struct s_img
+{
+	void	*img;
+	char	*path;
+	int		width;
+	int		height;
+}			t_img;
+
 int		ft_printf(const char *str, ...);
 char	*get_next_line(int fd);
 void	*ft_calloc(size_t count, size_t size);
@@ -80,11 +88,3 @@ int		strline(char *str);
 // 	int		line;
 // 	int		endian;
 // }			t_pix;
-
-// typedef struct s_img
-// {
-// 	void	*img;
-// 	char	*path;
-// 	int		width;
-// 	int		height;
-// }			t_img;

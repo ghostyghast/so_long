@@ -1,3 +1,5 @@
+#include "so_long.h"
+
 void	rectangle(t_pix *img, int *xs, int *ys)
 {
 	int	y;
