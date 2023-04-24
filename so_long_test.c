@@ -6,7 +6,7 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:20:15 by amaligno          #+#    #+#             */
-/*   Updated: 2023/04/12 18:34:10 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/04/21 20:30:37 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,22 @@ int	stop(int keycode)
 
 int	main(void)
 {
-	t_img	img1;
+	void	*img1;
 	t_data	data;
-	t_img	img2;
+	void	*img2;
 
-	img1.height = img2.height = 1100;
-	img1.width = img2.width = 800;
+	int h1 = 0; 
+	int h2  = 0;
+	int w1  = 0;
+	int w2  = 0;
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, 1920, 1080, "Hi :)");
-	img1.img = mlx_xpm_file_to_image(data.mlx, "Resources/Textures/test.xpm", &img1.width, &img1.height);
-	img2.img = mlx_xpm_file_to_image(data.mlx, "Resources/Textures/red_circle.xpm", &img2.width, &img2.height);
+	img1 = mlx_xpm_file_to_image(data.mlx, "Resources/Textures/test.xpm", &w1, &h1);
+	img2 = mlx_xpm_file_to_image(data.mlx, "Resources/Textures/red_circle.xpm", &w2, &h2);
 	// rectangle(&pix, 500, 500);
-	mlx_put_image_to_window(data.mlx, data.win, img2.img, 0, 0);
-	mlx_put_image_to_window(data.mlx, data.win, img2.img, 100, 100);
-	mlx_put_image_to_window(data.mlx, data.win, img1.img, 0, 0);
+	mlx_put_image_to_window(data.mlx, data.win, img1, 0, 0);
+	mlx_put_image_to_window(data.mlx, data.win, img2, 100, 100);
+	// mlx_put_image_to_window(data.mlx, data.win, img1, 150, 150);
 	mlx_key_hook(data.win, stop, &data);
 	mlx_loop(data.mlx);
 	return (0);

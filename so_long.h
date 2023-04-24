@@ -6,7 +6,7 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:25:03 by amaligno          #+#    #+#             */
-/*   Updated: 2023/04/12 18:20:37 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/04/21 17:22:46 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ typedef struct s_data
 {
 	void	*mlx;
 	void	*win;
+	void	*wall;
+	void	*player;
+	void	*floor;
+	void	*coin;
+	void	*exit;
+	char	**map;
 }	t_data;
 
 typedef struct s_pce
@@ -59,14 +65,6 @@ typedef struct s_info
 	int	exit;
 }	t_info;
 
-typedef struct s_img
-{
-	void	*img;
-	char	*path;
-	int		width;
-	int		height;
-}			t_img;
-
 int		ft_printf(const char *str, ...);
 char	*get_next_line(int fd);
 void	*ft_calloc(size_t count, size_t size);
@@ -77,8 +75,17 @@ void	render(char *str);
 int		path_check(char **map, int lw, t_pce pce);
 int		parser(char *map);
 int		strline(char *str);
+char	**str_alloc(char *map, int *lw);
 
 #endif
+
+// typedef struct s_img
+// {
+// 	void	*img;
+// 	char	*path;
+// 	int		width;
+// 	int		height;
+// }			t_img;
 
 // typedef struct s_pix
 // {

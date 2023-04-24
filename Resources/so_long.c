@@ -6,18 +6,11 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 16:50:10 by amaligno          #+#    #+#             */
-/*   Updated: 2023/04/12 16:17:20 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/04/21 16:46:55 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-
-// void	so_long(char *map)
-// {
-// 	if (parser(map))
-
-// 	return ;
-// }
 
 void	freemap(char **str)
 {
@@ -27,6 +20,7 @@ void	freemap(char **str)
 	while (str[++y])
 		free(str[y]);
 	free(str[y]);
+	free(str);
 }
 
 int	main(int c, char **strs)
