@@ -6,7 +6,7 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:25:03 by amaligno          #+#    #+#             */
-/*   Updated: 2023/04/21 17:22:46 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:32:50 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,38 @@
 # include <mlx.h>
 # include <stdio.h>
 # include <fcntl.h>
-// # include "Resources/libft/ft_printf.h"
-// # include "Resources/libft/get_next_line.h"
 
-// enum
-// {
-// }
+enum {
+	ON_KEYDOWN = 2,
+	ON_KEYUP = 3,
+	ON_DESTROY = 17,
+	KEY_UP = 126,
+	KEY_DOWN = 125,
+	KEY_LEFT = 123,
+	KEY_RIGHT = 124,
+	KEY_ESC = 53
+};
 
 typedef struct s_data
 {
-	void	*mlx;
-	void	*win;
+	void		*mlx;
+	void		*win;
+	char		**map;
+	int			move_count;
+	t_pos		size;
+	t_pos		p_pos;
+	t_sprites	sprites;
+}	t_data;
+
+typedef struct s_sprites
+{
 	void	*wall;
 	void	*player;
 	void	*floor;
 	void	*coin;
-	void	*exit;
-	char	**map;
-}	t_data;
+	void	*exit_open;
+	void	*exit_closed;
+}	t_sprites;
 
 typedef struct s_pce
 {
@@ -70,8 +84,9 @@ char	*get_next_line(int fd);
 void	*ft_calloc(size_t count, size_t size);
 void	*ft_bzero(void *s, size_t n);
 
+void	exit_prog(t_data *data);
 void	freemap(char **str);
-void	render(char *str);
+void	loop(char *str);
 int		path_check(char **map, int lw, t_pce pce);
 int		parser(char *map);
 int		strline(char *str);
