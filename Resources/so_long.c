@@ -6,7 +6,7 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 16:50:10 by amaligno          #+#    #+#             */
-/*   Updated: 2023/04/25 16:53:27 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/04/27 21:13:46 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,16 @@ void	freemap(char **str)
 	free(str);
 }
 
-void	exit_prog(t_data *data)
+int	exit_prog(t_data *data, int i)
 {
+	if (i == 1)
+		ft_printf("You win!! :) :)\n");
 	freemap(data->map);
-	mlx_
+	free(data->sprite.an_c);
+	free(data->sprite.an_p);
+	mlx_destroy_window(data->mlx, data->win);
+	exit(0);
+	return (0);
 }
 
 int	main(int c, char **strs)
@@ -36,7 +42,7 @@ int	main(int c, char **strs)
 		if (parser(strs[1]))
 		{
 			ft_printf("valid map!\n");
-			// loop(strs[1]);
+			loop(strs[1]);
 			return (0);
 		}
 		ft_printf("Error\n");

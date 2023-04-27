@@ -6,7 +6,7 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:25:03 by amaligno          #+#    #+#             */
-/*   Updated: 2023/04/25 17:32:50 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/04/27 20:52:37 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 # include <fcntl.h>
 
 enum {
+	FRAMES = 12,
+	SPRITE_SIZE = 64,
+	FRAM_COIN = 3,
+	FRAM_PLYR = 2,
 	ON_KEYDOWN = 2,
 	ON_KEYUP = 3,
 	ON_DESTROY = 17,
@@ -27,29 +31,12 @@ enum {
 	KEY_DOWN = 125,
 	KEY_LEFT = 123,
 	KEY_RIGHT = 124,
-	KEY_ESC = 53
+	KEY_ESC = 53,
+	KEY_W = 13,
+	KEY_A = 0,
+	KEY_S = 1,
+	KEY_D = 2
 };
-
-typedef struct s_data
-{
-	void		*mlx;
-	void		*win;
-	char		**map;
-	int			move_count;
-	t_pos		size;
-	t_pos		p_pos;
-	t_sprites	sprites;
-}	t_data;
-
-typedef struct s_sprites
-{
-	void	*wall;
-	void	*player;
-	void	*floor;
-	void	*coin;
-	void	*exit_open;
-	void	*exit_closed;
-}	t_sprites;
 
 typedef struct s_pce
 {
@@ -79,14 +66,42 @@ typedef struct s_info
 	int	exit;
 }	t_info;
 
+typedef struct s_sprite
+{
+	void	*wall;
+	void	*player;
+	void	**an_p;
+	void	*floor;
+	void	*coin;
+	void	**an_c;
+	void	*exit_open;
+	void	*exit_closed;
+}	t_sprite;
+
+typedef struct s_data
+{
+	void		*mlx;
+	void		*win;
+	char		**map;
+	int			move_count;
+	int			coin_count;
+	t_pos		size;
+	t_pos		p_pos;
+	t_pos		e_pos;
+	t_sprite	sprite;
+}	t_data;
+
 int		ft_printf(const char *str, ...);
 char	*get_next_line(int fd);
 void	*ft_calloc(size_t count, size_t size);
 void	*ft_bzero(void *s, size_t n);
+char	*ft_itoa(int n);
+char	*ft_strdup(char *s1);
 
-void	exit_prog(t_data *data);
+void	init(t_data *data, char *str);
 void	freemap(char **str);
 void	loop(char *str);
+int		exit_prog(t_data *data, int i);
 int		path_check(char **map, int lw, t_pce pce);
 int		parser(char *map);
 int		strline(char *str);

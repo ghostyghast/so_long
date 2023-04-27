@@ -6,7 +6,7 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:20:15 by amaligno          #+#    #+#             */
-/*   Updated: 2023/04/21 20:30:37 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/04/26 14:25:49 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	main(void)
 	// rectangle(&pix, 500, 500);
 	mlx_put_image_to_window(data.mlx, data.win, img1, 0, 0);
 	mlx_put_image_to_window(data.mlx, data.win, img2, 100, 100);
+	mlx_destroy_image(data.mlx, img1);
 	// mlx_put_image_to_window(data.mlx, data.win, img1, 150, 150);
 	mlx_key_hook(data.win, stop, &data);
 	mlx_loop(data.mlx);

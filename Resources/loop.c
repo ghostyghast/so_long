@@ -6,69 +6,102 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:07:26 by amaligno          #+#    #+#             */
-/*   Updated: 2023/04/25 17:32:06 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/04/27 17:40:32 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	textures(t_data *data)
+void	put_img(t_data *data, char c, int x, int y)
 {
-	int	w;
-	int	h;
+	if (c == '1')
+		mlx_put_image_to_window(data->mlx, data->win, data->sprite.wall, x, y);
+	else if (c == 'C')
+	{
+		mlx_put_image_to_window(data->mlx, data->win, data->sprite.floor, x, y);
+		mlx_put_image_to_window(data->mlx, data->win, data->sprite.coin, x, y);
+	}
+	else if (c == 'E')
+		mlx_put_image_to_window(data->mlx, data->win, data->sprite.exit_closed,
+			x, y);
+	else if (c == '0')
+		mlx_put_image_to_window(data->mlx, data->win, data->sprite.floor,
+			x, y);
+	else if (c == 'O')
+		mlx_put_image_to_window(data->mlx, data->win, data->sprite.exit_open,
+			x, y);
+	else if (c == 'P')
+	{
+		mlx_put_image_to_window(data->mlx, data->win, data->sprite.floor, x, y);
+		mlx_put_image_to_window(data->mlx, data->win, data->sprite.player,
+			x, y);
+	}	
+}
 
-	w = 64;
-	h = 64;
-	data->sprites.floor = mlx_xpm_file_to_image(data->mlx,
-			"Textures/eyefloor.xpm", &w, &h);
-	data->sprites.wall = mlx_xpm_file_to_image(data->mlx,
-			"Textures/shitwall.xpm", &w, &h);
-	data->sprites.coin = mlx_xpm_file_to_image(data->mlx,
-			"Textures/coin.xpm", &w, &h);
-	data->sprites.player = mlx_xpm_file_to_image(data->mlx,
-			"Textures/exitopen.xpm", &w, &h);
-	data->sprites.exit_closed = mlx_xpm_file_to_image(data->mlx,
-			"Textures/exitclosed.xpm", &w, &h);
-	data->sprites.exit_open = mlx_xpm_file_to_image(data->mlx,
-			"Textures/exitopen.xpm", &w, &h);
+void	render(t_data *data)
+{
+	t_pos	xy;
+
+	xy.y = 0;
+	mlx_clear_window(data->mlx, data->win);
+	while (data->map[xy.y])
+	{
+		xy.x = 0;
+		while (data->map[xy.y][xy.x] && data->map[xy.y][xy.x] != '\n')
+		{
+			put_img(data, data->map[xy.y][xy.x],
+				(SPRITE_SIZE * xy.x), (SPRITE_SIZE * xy.y));
+			++xy.x;
+		}
+		xy.y++;
+	}
+	mlx_string_put(data->mlx, data->win, 0, 0, 0x00FF00, ft_strdup("moves:"));
+	mlx_string_put(data->mlx, data->win, 65, 0, 0x00FF00,
+		ft_itoa(data->move_count));
+}
+
+void	move_check(t_data *data, int y, int x)
+{
+	if (data->map[y][x] == '1' || data->map[y][x] == 'E')
+		return ;
+	if (data->map[y][x] == 'O')
+		exit_prog(data, 1);
+	else
+	{
+		if (data->map[y][x] == 'C' && --data->coin_count == 0)
+				data->map[data->e_pos.y][data->e_pos.x] = 'O';
+		data->map[data->p_pos.y][data->p_pos.x] = '0';
+		data->map[y][x] = 'P';
+		data->p_pos.x = x;
+		data->p_pos.y = y;
+		data->move_count++;
+		render(data);
+	}
 }
 
 int	key_check(int key, t_data *data)
 {
 	if (key == KEY_ESC)
-	
-	else if (key == KEY_UP)
-
-	else if (key == KEY_LEFT)
-	
-	else if (key == KEY_DOWN)
-
-	else if (key == KEY_RIGHT)
-
+		exit_prog(data, 0);
+	else if (key == KEY_UP || key == KEY_W)
+		move_check(data, data->p_pos.y -1, data->p_pos.x);
+	else if (key == KEY_LEFT || key == KEY_A)
+		move_check(data, data->p_pos.y, data->p_pos.x -1);
+	else if (key == KEY_DOWN || key == KEY_S)
+		move_check(data, data->p_pos.y +1, data->p_pos.x);
+	else if (key == KEY_RIGHT || key == KEY_D)
+		move_check(data, data->p_pos.y, data->p_pos.x +1);
 	return (0);
-}
-
-void	move(t_data *data, int dir)
-{
-	
-}
-
-void	render(t_data *data)
-{
-	
 }
 
 void	loop(char *str)
 {
 	t_data	data;
-	
-	data.size.y = 0;
-	data.map = str_alloc(str, &data.size.y);
-	data.size.x = strline(data.map[0]);
-	data.mlx = mlx_init();
-	data.win = mlx_new_window(data.mlx, (64 * data.size.x), (64 * data.size.y), "So_long");
-	textures(&data);
-	mlx_key_hook(data.mlx, key_check, &data);
-	mlx_hook(data.mlx, ON_DESTROY, 0, exit_prog, &data);
+
+	init(&data, str);
+	// mlx_loop_hook(data.mlx, animate, &data);
+	mlx_key_hook(data.win, key_check, &data);
+	mlx_hook(data.win, ON_DESTROY, 0, exit_prog, &data);
+	render(&data);
 	mlx_loop(data.mlx);
 }
