@@ -6,7 +6,7 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:25:03 by amaligno          #+#    #+#             */
-/*   Updated: 2023/04/27 20:52:37 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:01:17 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@
 # include <stdio.h>
 # include <fcntl.h>
 
+# define FRAMES 120
+
 enum {
-	FRAMES = 12,
 	SPRITE_SIZE = 64,
 	FRAM_COIN = 3,
 	FRAM_PLYR = 2,
@@ -98,6 +99,8 @@ void	*ft_bzero(void *s, size_t n);
 char	*ft_itoa(int n);
 char	*ft_strdup(char *s1);
 
+void	render(t_data *data);
+int		animate(t_data *data);
 void	init(t_data *data, char *str);
 void	freemap(char **str);
 void	loop(char *str);

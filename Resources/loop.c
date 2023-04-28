@@ -6,7 +6,7 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:07:26 by amaligno          #+#    #+#             */
-/*   Updated: 2023/04/27 17:40:32 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/04/28 15:14:48 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,9 @@ void	loop(char *str)
 	t_data	data;
 
 	init(&data, str);
-	// mlx_loop_hook(data.mlx, animate, &data);
+	mlx_loop_hook(data.mlx, animate, &data);
 	mlx_key_hook(data.win, key_check, &data);
 	mlx_hook(data.win, ON_DESTROY, 0, exit_prog, &data);
-	render(&data);
+	// render(&data);
 	mlx_loop(data.mlx);
 }

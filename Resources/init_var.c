@@ -6,7 +6,7 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 15:46:53 by amaligno          #+#    #+#             */
-/*   Updated: 2023/04/27 21:04:32 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/04/28 15:18:46 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,12 @@ void	textures(t_data *data)
 	data->sprite.an_p = malloc(sizeof(void *) * (FRAM_PLYR + 1));
 	data->sprite.an_c[FRAM_COIN] = NULL;
 	data->sprite.an_p[FRAM_PLYR] = NULL;
-	data->sprite.an_p[0] = file_to_img(data, "Resources/Textures/playerf");
-	data->sprite.an_p[1] = file_to_img(data, "Resources/Textures/playerf");
-	data->sprite.an_c[0] = file_to_img(data, "Resources/Textures/coinf");
-	data->sprite.an_c[1] = file_to_img(data, "Resources/Textures/coinf");
-	data->sprite.an_c[2] = file_to_img(data, "Resources/Textures/coinf");
+	data->sprite.an_p[0] = file_to_img(data, "Resources/Textures/dogo.xpm");
+	data->sprite.an_p[1] = file_to_img(data, "Resources/Textures/rayman.xpm");
+	data->sprite.coin = file_to_img(data, "Resources/Textures/coin.xpm");
+	// data->sprite.an_c[0] = file_to_img(data, "Resources/Textures/coinf");
+	// data->sprite.an_c[1] = file_to_img(data, "Resources/Textures/coinf");
+	// data->sprite.an_c[2] = file_to_img(data, "Resources/Textures/coinf");
 	data->sprite.floor = file_to_img(data, "Resources/Textures/eyefloor.xpm");
 	data->sprite.wall = file_to_img(data, "Resources/Textures/shitwall.xpm");
 	data->sprite.exit_closed = file_to_img(data,
