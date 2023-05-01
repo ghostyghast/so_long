@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaligno <antoinemalignon@yahoo.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:07:26 by amaligno          #+#    #+#             */
-/*   Updated: 2023/04/28 15:14:48 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/01 17:29:52 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	put_img(t_data *data, char c, int x, int y)
 void	render(t_data *data)
 {
 	t_pos	xy;
+	char	*str;
 
 	xy.y = 0;
 	mlx_clear_window(data->mlx, data->win);
@@ -55,9 +56,12 @@ void	render(t_data *data)
 		}
 		xy.y++;
 	}
-	mlx_string_put(data->mlx, data->win, 0, 0, 0x00FF00, ft_strdup("moves:"));
-	mlx_string_put(data->mlx, data->win, 65, 0, 0x00FF00,
-		ft_itoa(data->move_count));
+	str = ft_strdup("moves:");
+	mlx_string_put(data->mlx, data->win, 0, 0, 0x00FF00, str);
+	free(str);
+	str = ft_itoa(data->move_count);
+	mlx_string_put(data->mlx, data->win, 65, 0, 0x00FF00, str);
+	free(str);
 }
 
 void	move_check(t_data *data, int y, int x)
@@ -102,6 +106,5 @@ void	loop(char *str)
 	mlx_loop_hook(data.mlx, animate, &data);
 	mlx_key_hook(data.win, key_check, &data);
 	mlx_hook(data.win, ON_DESTROY, 0, exit_prog, &data);
-	// render(&data);
 	mlx_loop(data.mlx);
 }

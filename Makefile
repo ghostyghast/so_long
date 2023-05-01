@@ -5,7 +5,11 @@ OBJS = $(SRCS:.c=.o)
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra 
+WIN = gcc
+
+RAW = gcc
+
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g3
 
 MLX = -lmlx -framework OpenGL -framework AppKit
 
@@ -13,11 +17,7 @@ MLX_WIN = -lmlx -lXext -lX11 -lm -lz
 
 LEAK = -Wall -Werror -Wextra -fsanitize=address -g3
 
-RAW = gcc
-
 NAME = so_long
-
-WIN = gcc
 
 %.o : %.c
 	@$(CC) -c -o $@ $< $(CFLAGS) 
