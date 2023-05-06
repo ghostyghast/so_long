@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   animate.t.c                                        :+:      :+:    :+:   */
+/*   animate.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:09:51 by amaligno          #+#    #+#             */
-/*   Updated: 2023/04/28 18:03:02 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/06 19:06:50 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	*anim_sprite(void **sprite, int frames)
 int	animate(t_data *data)
 {
 	// data->sprite.coin = anim_sprite(data->sprite.an_c, FRAMES, cur_frame, data);
-	data->sprite.player = anim_sprite(data->sprite.an_p, 120);
+	data->sprite.player = anim_sprite(data->sprite.an_p, FRAMES);
 	render(data);
 	return (0);
 }

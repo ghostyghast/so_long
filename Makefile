@@ -9,7 +9,7 @@ WIN = gcc
 
 RAW = gcc
 
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g3
+CFLAGS = -Wall -Werror -Wextra
 
 MLX = -lmlx -framework OpenGL -framework AppKit
 
@@ -20,7 +20,7 @@ LEAK = -Wall -Werror -Wextra -fsanitize=address -g3
 NAME = so_long
 
 %.o : %.c
-	@$(CC) -c -o $@ $< $(CFLAGS) 
+	@$(CC) -c -o $@ $< 
 
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(MLX) -o $(NAME) $(SRCS)

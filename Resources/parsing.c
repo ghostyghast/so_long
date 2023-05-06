@@ -6,7 +6,7 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:09:40 by amaligno          #+#    #+#             */
-/*   Updated: 2023/04/26 15:41:30 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/06 17:14:40 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int	line_check(char **str, int lw)
 char	**str_alloc(char *map, int *lw)
 {
 	char	**str;
+	char	*line;
 	int		fd;
 	int		i;
 
@@ -83,8 +84,13 @@ char	**str_alloc(char *map, int *lw)
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
 		return (NULL);
-	while (get_next_line(fd))
+	line = get_next_line(fd);
+	while (line)
+	{
+		free(line);
+		line = get_next_line(fd);
 		*lw += 1;
+	}
 	close(fd);
 	str = ft_calloc(sizeof(char *), (*lw + 1));
 	str[*lw] = NULL;
@@ -105,11 +111,15 @@ int	parser(char *map)
 	str = str_alloc(map, &lw);
 	if (!str)
 		return (0);
-	if (pce_check(str, &pce) && line_check(str, lw))
+	if (pce_check(str, &pce) && line_check(str, lw)) 
 	{
 		if (path_check(str, lw, pce))
+		{	
+			freemap(str);
 			return (1);
+		}
 	}
 	freemap(str);
+	system("leaks so_long");
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaligno <antoinemalignon@yahoo.com>       +#+  +:+       +#+        */
+/*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:07:26 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/01 17:29:52 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/06 19:29:55 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,12 @@ void	put_img(t_data *data, char c, int x, int y)
 		mlx_put_image_to_window(data->mlx, data->win, data->sprite.floor, x, y);
 		mlx_put_image_to_window(data->mlx, data->win, data->sprite.player,
 			x, y);
-	}	
+	}
+	else if (c == 'L')
+	{
+		mlx_put_image_to_window(data->mlx, data->win, data->sprite.floor, x, y);
+		mlx_put_image_to_window(data->mlx, data->win, data->sprite.enemy, x, y);
+	}
 }
 
 void	render(t_data *data)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaligno <antoinemalignon@yahoo.com>       +#+  +:+       +#+        */
+/*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 16:50:10 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/01 17:18:29 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/06 17:25:29 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	exit_prog(t_data *data, int i)
 	free(data->sprite.an_c);
 	free(data->sprite.an_p);
 	mlx_destroy_window(data->mlx, data->win);
+	system("leaks so_long");
 	exit(0);
 	return (0);
 }
