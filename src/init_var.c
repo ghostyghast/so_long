@@ -6,11 +6,11 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 15:46:53 by amaligno          #+#    #+#             */
-/*   Updated: 2023/04/28 15:18:46 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/08 16:55:06 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long.h"
 
 void	get_pce(t_data *data)
 {
@@ -41,14 +41,17 @@ void	get_pce(t_data *data)
 	}
 }
 
-void	*file_to_img(t_data *data, char *str)
+void	file_to_img(t_data *data, char *str, void **p)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
+	char	*path;
 
 	x = SPRITE_SIZE;
 	y = SPRITE_SIZE;
-	return (mlx_xpm_file_to_image(data->mlx, str, &x, &y));
+	path = ft_strjoin("textures/", str);
+	*p = mlx_xpm_file_to_image(data->mlx, str, &x, &y);
+	free(path);
 }
 
 void	textures(t_data *data)
@@ -57,18 +60,16 @@ void	textures(t_data *data)
 	data->sprite.an_p = malloc(sizeof(void *) * (FRAM_PLYR + 1));
 	data->sprite.an_c[FRAM_COIN] = NULL;
 	data->sprite.an_p[FRAM_PLYR] = NULL;
-	data->sprite.an_p[0] = file_to_img(data, "Resources/Textures/dogo.xpm");
-	data->sprite.an_p[1] = file_to_img(data, "Resources/Textures/rayman.xpm");
-	data->sprite.coin = file_to_img(data, "Resources/Textures/coin.xpm");
-	// data->sprite.an_c[0] = file_to_img(data, "Resources/Textures/coinf");
-	// data->sprite.an_c[1] = file_to_img(data, "Resources/Textures/coinf");
-	// data->sprite.an_c[2] = file_to_img(data, "Resources/Textures/coinf");
-	data->sprite.floor = file_to_img(data, "Resources/Textures/eyefloor.xpm");
-	data->sprite.wall = file_to_img(data, "Resources/Textures/shitwall.xpm");
-	data->sprite.exit_closed = file_to_img(data,
-			"Resources/Textures/exitclosed.xpm");
-	data->sprite.exit_open = file_to_img(data,
-			"Resources/Textures/exitopen.xpm");
+	file_to_img(data, "dogo.xpm", data->sprite.an_p[0]);
+	file_to_img(data, "rayman.xpm", data->sprite.an_p[1]);
+	file_to_img(data, "coin.xpm", data->sprite.coin);
+	// data->sprite.an_c[0] = file_to_img(data, "coinf");
+	// data->sprite.an_c[1] = file_to_img(data, "coinf");
+	// data->sprite.an_c[2] = file_to_img(data, "coinf");
+	file_to_img(data, "eyefloor.xpm", data->sprite.floor);
+	file_to_img(data, "exitclosed.xpm", data->sprite.exit_closed);
+	file_to_img(data, "exitopen.xpm", data->sprite.exit_open);
+	file_to_img(data, "shitwall.xpm", data->sprite.wall);
 }
 
 void	init(t_data *data, char *str)

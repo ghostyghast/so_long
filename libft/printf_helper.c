@@ -6,11 +6,11 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 14:45:40 by amaligno          #+#    #+#             */
-/*   Updated: 2023/02/27 18:18:41 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/08 16:06:50 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 void	writer(const char *str, int *i)
 {

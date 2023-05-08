@@ -1,29 +1,33 @@
-SRCS = $(wildcard Resources/*.c) \
-		$(wildcard Resources/libft/*.c)
+SRCS_NAME := init_var.c loop.c parsing.c so_long.c pathcheck.c animate.c
 
-OBJS = $(SRCS:.c=.o)
+SRCS_DIR := ./src 
+OBJS_DIR := ./obj
 
-CC = gcc
+OBJS := $(SRCS_NAME:%.c=$(OBJS_DIR)/%.o)
 
-WIN = gcc
+CC := gcc
 
 RAW = gcc
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS := -Wall -Werror -Wextra
 
-MLX = -lmlx -framework OpenGL -framework AppKit
+MLX := -lmlx -framework OpenGL -framework AppKit
 
-MLX_WIN = -lmlx -lXext -lX11 -lm -lz
+WIN = -lmlx -lXext -lX11 -lm -lz
 
 LEAK = -Wall -Werror -Wextra -fsanitize=address -g3
 
-NAME = so_long
+NAME := so_long
 
-%.o : %.c
-	@$(CC) -c -o $@ $< 
+INCLUDES := -Iincludes -Ilibft
+
+$(OBJS_DIR)/%.o : $(SRCS_DIR)/%.c
+	mkdir -p $(OBJS_DIR)
+	$(CC) $(INCLUDES) -Imlx -c $< -o $@  
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(MLX) -o $(NAME) $(SRCS)
+	@make -C ./libft 
+	@$(CC) $(CFLAGS) $(INCLUDES) $(MLX) -o $@ $(OBJS) -lft -L./libft
 
 $(LEAK): 
 	@$(CC) $(LEAK) $(MLX) -o $(NAME) $(SRCS)
@@ -32,7 +36,7 @@ $(RAW):
 	@$(RAW) $(MLX) -o $(NAME) $(SRCS)
 
 $(WIN):
-	@$(WIN) $(SRCS) $(CFLAGS) $(MLX_WIN) -o $(NAME)
+	@$(CC) $(SRCS) $(CFLAGS) $(MLX_WIN) -o $(NAME)
 
 all: $(NAME)
 
@@ -43,12 +47,13 @@ leak: $(LEAK)
 raw: $(RAW)
 
 clean: 
-	@rm -f $(OBJS)
+	@rm -rf src/obj
+	@make clean -C ./libft
 	@echo "clean!"
-	
 
 fclean: clean
 	@rm -f $(NAME)
+	@make fclean -C ./libft
 	@echo "fclean!"
 
 re: fclean all

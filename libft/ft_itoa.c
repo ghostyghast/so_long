@@ -6,11 +6,11 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 15:14:11 by amaligno          #+#    #+#             */
-/*   Updated: 2023/04/27 14:15:18 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/08 16:06:27 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../so_long.h"
+#include "libft.h"
 
 int	numlen(int n)
 {

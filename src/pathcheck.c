@@ -6,11 +6,11 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:07:57 by amaligno          #+#    #+#             */
-/*   Updated: 2023/04/26 15:41:23 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/08 16:48:42 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long.h"
 
 void	get_start(char **map, t_flood *fl, int lw)
 {

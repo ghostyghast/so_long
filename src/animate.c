@@ -6,11 +6,11 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:09:51 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/06 19:06:50 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/08 16:49:08 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long.h"
 
 void	*anim_sprite(void **sprite, int frames)
 {

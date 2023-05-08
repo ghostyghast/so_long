@@ -6,11 +6,11 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 17:12:44 by amaligno          #+#    #+#             */
-/*   Updated: 2023/03/30 18:02:00 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:54:56 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 char	*strtrim(char *tocut, char *line)
 {

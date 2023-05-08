@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaligno <antoinemalignon@yahoo.com>       +#+  +:+       +#+        */
+/*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:25:03 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/01 17:43:19 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:58:12 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdint.h>
-# include <stdio.h>
 # include <fcntl.h>
 # include <mlx.h>
+# include "libft.h"
 
 # define FRAMES 120
 
@@ -47,7 +47,7 @@ enum {
 // 	ON_KEYDOWN = 2,
 // 	ON_KEYUP = 3,
 // 	ON_DESTROY = 17,
-// 	KEY_UP = 65362,
+// 	KEY_UP = 65362,				Wsl keys
 // 	KEY_DOWN = 65364,
 // 	KEY_LEFT = 65361,
 // 	KEY_RIGHT = 65363,
@@ -96,6 +96,8 @@ typedef struct s_sprite
 	void	**an_c;
 	void	*exit_open;
 	void	*exit_closed;
+	void	*enemy;
+	void	**an_en;
 }	t_sprite;
 
 typedef struct s_data
@@ -113,10 +115,6 @@ typedef struct s_data
 
 int		ft_printf(const char *str, ...);
 char	*get_next_line(int fd);
-void	*ft_calloc(size_t count, size_t size);
-void	*ft_bzero(void *s, size_t n);
-char	*ft_itoa(int n);
-char	*ft_strdup(char *s1);
 
 void	render(t_data *data);
 int		animate(t_data *data);

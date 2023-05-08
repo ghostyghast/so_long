@@ -1,40 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 17:05:13 by amaligno          #+#    #+#             */
-/*   Updated: 2023/04/26 19:16:34 by amaligno         ###   ########.fr       */
+/*   Created: 2022/10/14 16:49:18 by amaligno          #+#    #+#             */
+/*   Updated: 2023/05/08 16:06:34 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../so_long.h"
+#include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_calloc(size_t count, size_t size)
 {
-	unsigned char	*s;
-	unsigned char	*d;
+	void	*str;
 
-	if (!dst && !src)
+	if (size != 0 && count >= SIZE_MAX / size)
 		return (NULL);
-	d = (unsigned char *)dst;
-	s = (unsigned char *)src;
-	while (n--)
-		*d++ = *s++;
-	return (dst);
-}
-
-char	*ft_strdup(char *s1)
-{
-	char	*str;
-	size_t	len;
-
-	len = strline(s1) + 1;
-	str = malloc(sizeof(char) * len);
+	str = malloc(size * count);
 	if (!str)
 		return (NULL);
-	str = ft_memcpy(str, s1, len);
+	ft_bzero(str, count * size);
 	return (str);
 }

@@ -6,11 +6,11 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 16:50:10 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/06 17:25:29 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/08 16:49:20 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long.h"
 
 void	freemap(char **str)
 {

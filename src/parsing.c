@@ -6,11 +6,11 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:09:40 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/06 17:14:40 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/08 16:49:29 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long.h"
 
 int	pce_check(char **str, t_pce *pce)
 {
@@ -111,7 +111,7 @@ int	parser(char *map)
 	str = str_alloc(map, &lw);
 	if (!str)
 		return (0);
-	if (pce_check(str, &pce) && line_check(str, lw)) 
+	if (pce_check(str, &pce) && line_check(str, lw))
 	{
 		if (path_check(str, lw, pce))
 		{	

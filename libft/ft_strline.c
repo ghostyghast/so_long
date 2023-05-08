@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strline.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/01 19:43:03 by amaligno          #+#    #+#             */
-/*   Updated: 2023/04/05 18:27:05 by amaligno         ###   ########.fr       */
+/*   Created: 2023/04/04 18:31:32 by amaligno          #+#    #+#             */
+/*   Updated: 2023/05/08 16:06:00 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <unistd.h>
-# include <stdarg.h>
+int	strline(char *str)
+{
+	int	len;
 
-void	writer(const char *str, int *i);
-void	ft_putchar(int c, int *i);
-void	ft_putnbr(int nb, int *len);
-void	ft_putunsigned(unsigned int nb, int *len);
-void	ft_puthexa(unsigned int n, int *len);
-#endif
+	len = 0;
+	while (str[len] && (str[len] != '\n'))
+		len++;
+	return (len);
+}

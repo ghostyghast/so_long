@@ -6,11 +6,11 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:07:26 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/06 19:29:55 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/08 16:48:57 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long.h"
 
 void	put_img(t_data *data, char c, int x, int y)
 {

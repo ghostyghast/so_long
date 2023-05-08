@@ -6,11 +6,11 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 17:14:27 by amaligno          #+#    #+#             */
-/*   Updated: 2023/02/17 14:32:28 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/08 16:06:59 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 char	*ft_strjoin(char *s1, char *s2)
 {
