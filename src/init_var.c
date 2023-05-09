@@ -6,7 +6,7 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 15:46:53 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/08 16:55:06 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/09 14:38:42 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	file_to_img(t_data *data, char *str, void **p)
 	x = SPRITE_SIZE;
 	y = SPRITE_SIZE;
 	path = ft_strjoin("textures/", str);
-	*p = mlx_xpm_file_to_image(data->mlx, str, &x, &y);
+	*p = mlx_xpm_file_to_image(data->mlx, path, &x, &y);
 	free(path);
 }
 
@@ -60,16 +60,16 @@ void	textures(t_data *data)
 	data->sprite.an_p = malloc(sizeof(void *) * (FRAM_PLYR + 1));
 	data->sprite.an_c[FRAM_COIN] = NULL;
 	data->sprite.an_p[FRAM_PLYR] = NULL;
-	file_to_img(data, "dogo.xpm", data->sprite.an_p[0]);
-	file_to_img(data, "rayman.xpm", data->sprite.an_p[1]);
-	file_to_img(data, "coin.xpm", data->sprite.coin);
-	// data->sprite.an_c[0] = file_to_img(data, "coinf");
-	// data->sprite.an_c[1] = file_to_img(data, "coinf");
-	// data->sprite.an_c[2] = file_to_img(data, "coinf");
-	file_to_img(data, "eyefloor.xpm", data->sprite.floor);
-	file_to_img(data, "exitclosed.xpm", data->sprite.exit_closed);
-	file_to_img(data, "exitopen.xpm", data->sprite.exit_open);
-	file_to_img(data, "shitwall.xpm", data->sprite.wall);
+	file_to_img(data, "dogo.xpm", &data->sprite.an_p[0]);
+	file_to_img(data, "rayman.xpm", &data->sprite.an_p[1]);
+	file_to_img(data, "coin.xpm", &data->sprite.coin);
+	// &data->sprite.an_c[0] = file_to_img(data, "coinf");
+	// &data->sprite.an_c[1] = file_to_img(data, "coinf");
+	// &data->sprite.an_c[2] = file_to_img(data, "coinf");
+	file_to_img(data, "eyefloor.xpm", &data->sprite.floor);
+	file_to_img(data, "exitclosed.xpm", &data->sprite.e_cl);
+	file_to_img(data, "exitopen.xpm", &data->sprite.e_op);
+	file_to_img(data, "shitwall.xpm", &data->sprite.wall);
 }
 
 void	init(t_data *data, char *str)

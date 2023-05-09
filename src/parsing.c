@@ -6,7 +6,7 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:09:40 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/08 16:49:29 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/09 14:52:47 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	pce_check(char **str, t_pce *pce)
 	pce->c = 0;
 	while (str[++xy.y])
 	{
-		xy.x = 0;
-		while ((str[xy.y][xy.x] != '\0') && (str[xy.y][xy.x] != '\n'))
+		xy.x = -1;
+		while ((str[xy.y][++xy.x] != '\0') && (str[xy.y][++xy.x] != '\n'))
 		{
 			if (str[xy.y][xy.x] == 'P')
 				pce->p += 1;
@@ -33,7 +33,6 @@ int	pce_check(char **str, t_pce *pce)
 				pce->e += 1;
 			else if (str[xy.y][xy.x] != '1' && str[xy.y][xy.x] != '0')
 				return (0);
-		xy.x++;
 		}
 	}
 	if ((pce->e != 1) || (pce->p != 1) || (pce->c < 1))

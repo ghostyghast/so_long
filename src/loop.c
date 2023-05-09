@@ -6,7 +6,7 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:07:26 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/08 16:48:57 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/09 14:43:17 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,17 @@ void	put_img(t_data *data, char c, int x, int y)
 		mlx_put_image_to_window(data->mlx, data->win, data->sprite.coin, x, y);
 	}
 	else if (c == 'E')
-		mlx_put_image_to_window(data->mlx, data->win, data->sprite.exit_closed,
-			x, y);
+		mlx_put_image_to_window(data->mlx, data->win, data->sprite.e_cl, x, y);
 	else if (c == '0')
-		mlx_put_image_to_window(data->mlx, data->win, data->sprite.floor,
-			x, y);
+		mlx_put_image_to_window(data->mlx, data->win, data->sprite.floor, x, y);
 	else if (c == 'O')
-		mlx_put_image_to_window(data->mlx, data->win, data->sprite.exit_open,
-			x, y);
+		mlx_put_image_to_window(data->mlx, data->win, data->sprite.e_cl, x, y);
 	else if (c == 'P')
 	{
 		mlx_put_image_to_window(data->mlx, data->win, data->sprite.floor, x, y);
-		mlx_put_image_to_window(data->mlx, data->win, data->sprite.player,
-			x, y);
+		mlx_put_image_to_window(data->mlx, data->win, data->sprite.plyr, x, y);
 	}
-	else if (c == 'L')
+	else if (c == 'X')
 	{
 		mlx_put_image_to_window(data->mlx, data->win, data->sprite.floor, x, y);
 		mlx_put_image_to_window(data->mlx, data->win, data->sprite.enemy, x, y);
@@ -75,6 +71,8 @@ void	move_check(t_data *data, int y, int x)
 		return ;
 	if (data->map[y][x] == 'O')
 		exit_prog(data, 1);
+	else if (data->map[y][x] == 'X')
+		exit_prog(data, 0);
 	else
 	{
 		if (data->map[y][x] == 'C' && --data->coin_count == 0)
