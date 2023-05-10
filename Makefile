@@ -18,7 +18,7 @@ LIB = -L./libft -lft
 
 MLX = -lmlx -framework OpenGL -framework AppKit
 
-MLX_WIN = -lmlx -lXext -lX11 -lm -lz
+MLX_WIN = -lmlx -lXext -lX11
 
 LEAK = -Wall -Werror -Wextra -fsanitize=address -g3
 
@@ -38,10 +38,14 @@ $(RAW):
 	@make -C ./libft 
 	@$(RAW) $(MLX) -o $(NAME) $(SRCS)
 
-$(WIN):
-	@$(WIN) $(SRCS) $(CFLAGS) $(MLX_WIN) -o $(NAME)
-
 all: $(NAME)
+
+win: $(OBJS)
+	@make -C ./libft
+	@$(CC) $(CFLAGS) $(SRCS) -o $(NAME) $(INCLUDES) $(MLX_WIN) $(LIB) 
+
+leak: $(OBJS)
+	@$(CC) $(LEAK) $(SRCS) -o $(NAME) $(INCLUDES) $(MLX_WIN) $(LIB) 
 
 clean: 
 	@rm -f src/*.o

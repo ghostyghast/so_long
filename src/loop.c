@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaligno <antoinemalignon@yahoo.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:07:26 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/09 14:43:17 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/10 23:45:24 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	put_img(t_data *data, char c, int x, int y)
 	else if (c == '0')
 		mlx_put_image_to_window(data->mlx, data->win, data->sprite.floor, x, y);
 	else if (c == 'O')
-		mlx_put_image_to_window(data->mlx, data->win, data->sprite.e_cl, x, y);
+		mlx_put_image_to_window(data->mlx, data->win, data->sprite.e_op, x, y);
 	else if (c == 'P')
 	{
 		mlx_put_image_to_window(data->mlx, data->win, data->sprite.floor, x, y);

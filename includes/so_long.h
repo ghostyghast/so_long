@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaligno <antoinemalignon@yahoo.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:25:03 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/10 18:48:14 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/11 00:21:04 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,7 @@
 # include "libft.h"
 
 # define FRAMES 120
-
-enum {
-	SPRITE_SIZE = 64,
-	FRAM_COIN = 3,
-	FRAM_PLYR = 2,
-	ON_KEYDOWN = 2,
-	ON_KEYUP = 3,
-	ON_DESTROY = 17,
-	KEY_UP = 126,
-	KEY_DOWN = 125,
-	KEY_LEFT = 123,
-	KEY_RIGHT = 124,
-	KEY_ESC = 53,
-	KEY_W = 13,
-	KEY_A = 0,
-	KEY_S = 1,
-	KEY_D = 2
-};
+# define ENEMY_SPEED 180
 
 // enum {
 // 	SPRITE_SIZE = 64,
@@ -47,16 +30,34 @@ enum {
 // 	ON_KEYDOWN = 2,
 // 	ON_KEYUP = 3,
 // 	ON_DESTROY = 17,
-// 	KEY_UP = 65362,				Wsl keys
-// 	KEY_DOWN = 65364,
-// 	KEY_LEFT = 65361,
-// 	KEY_RIGHT = 65363,
-// 	KEY_ESC = 65307,
+// 	KEY_UP = 126,
+// 	KEY_DOWN = 125,
+// 	KEY_LEFT = 123,
+// 	KEY_RIGHT = 124,
+// 	KEY_ESC = 53,
 // 	KEY_W = 13,
 // 	KEY_A = 0,
 // 	KEY_S = 1,
 // 	KEY_D = 2
 // };
+
+enum {
+	SPRITE_SIZE = 64,
+	FRAM_COIN = 3,
+	FRAM_PLYR = 2,
+	ON_KEYDOWN = 2,
+	ON_KEYUP = 3,
+	ON_DESTROY = 17,
+	KEY_UP = 65362,
+	KEY_DOWN = 65364,
+	KEY_LEFT = 65361,
+	KEY_RIGHT = 65363,
+	KEY_ESC = 65307,
+	KEY_W = 13,
+	KEY_A = 0,
+	KEY_S = 1,
+	KEY_D = 2
+};
 
 typedef struct s_pce
 {
@@ -89,16 +90,22 @@ typedef struct s_info
 typedef struct s_sprite
 {
 	void	*wall;
-	void	*player;
+	void	*plyr;
 	void	**an_p;
 	void	*floor;
 	void	*coin;
 	void	**an_c;
-	void	*exit_open;
-	void	*exit_closed;
-	void	*enemy;
+	void	*e_cl;
+	void	*e_op;
+	void	*enemies;
 	void	**an_en;
 }	t_sprite;
+
+typedef struct s_enemy
+{
+	t_pos pos;
+	t_enemy *next;
+}	t_enemy;
 
 typedef struct s_data
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaligno <antoinemalignon@yahoo.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:09:40 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/10 17:34:39 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/10 23:33:18 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	pce_check(char **str, t_pce *pce)
 	while (str[++xy.y])
 	{
 		xy.x = -1;
-		while ((str[xy.y][++xy.x] != '\0') && (str[xy.y][++xy.x] != '\n'))
+		while ((str[xy.y][++xy.x] != '\0') && (str[xy.y][xy.x] != '\n'))
 		{
 			if (str[xy.y][xy.x] == 'P')
 				pce->p += 1;
@@ -38,6 +38,7 @@ int	pce_check(char **str, t_pce *pce)
 	}
 	if ((pce->e != 1) || (pce->p != 1) || (pce->c < 1))
 		return (0);
+	ft_printf("hi\n");
 	return (1);
 }
 
@@ -120,6 +121,6 @@ int	parser(char *map)
 		}
 	}
 	freemap(str);
-	system("leaks so_long");
+	// system("leaks so_long");
 	return (0);
 }

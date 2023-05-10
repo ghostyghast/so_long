@@ -6,7 +6,7 @@
 /*   By: amaligno <antoinemalignon@yahoo.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 15:46:53 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/10 22:56:55 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/11 00:02:30 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,16 +84,3 @@ void	init(t_data *data, char *str)
 			(SPRITE_SIZE * data->size.y), "So_long");
 	textures(data);
 }
-
-// void	printmap(char **map)
-// {
-// 	t_pos	xy;
-
-// 	xy.y = 0;
-// 	while (map[xy.y + 1])
-// 	{
-// 		ft_printf("%s", map[xy.y]);
-// 		xy.y++;
-// 	}
-// 	ft_printf("%s\n", map[xy.y]);
-// }
