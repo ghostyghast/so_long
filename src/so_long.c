@@ -6,7 +6,7 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 16:50:10 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/08 16:49:20 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/09 14:56:34 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	exit_prog(t_data *data, int i)
 {
 	if (i == 1)
 		ft_printf("You win!! :) :)\n");
+	else if (i == 0)
+		ft_printf("You lose :(\n");
 	freemap(data->map);
 	free(data->sprite.an_c);
 	free(data->sprite.an_p);
@@ -46,7 +48,7 @@ int	main(int c, char **strs)
 			loop(strs[1]);
 			return (0);
 		}
-		ft_printf("Error\n");
+		ft_printf("Map Error\n");
 		return (0);
 	}
 	ft_printf("Not enough args\n");

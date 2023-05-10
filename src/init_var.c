@@ -6,7 +6,7 @@
 /*   By: amaligno <antoinemalignon@yahoo.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 15:46:53 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/09 00:50:54 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/10 22:56:55 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,16 @@ void	textures(t_data *data)
 	data->sprite.an_p = malloc(sizeof(void *) * (FRAM_PLYR + 1));
 	data->sprite.an_c[FRAM_COIN] = NULL;
 	data->sprite.an_p[FRAM_PLYR] = NULL;
-	file_to_img(data, "dogo.xpm", data->sprite.an_p[0]);
-	file_to_img(data, "rayman.xpm", data->sprite.an_p[1]);
-	file_to_img(data, "coin.xpm", data->sprite.coin);
-	// data->sprite.an_c[0] = file_to_img(data, "coinf");
-	// data->sprite.an_c[1] = file_to_img(data, "coinf");
-	// data->sprite.an_c[2] = file_to_img(data, "coinf");
-	file_to_img(data, "eyefloor.xpm", data->sprite.floor);
-	file_to_img(data, "exitclosed.xpm", data->sprite.exit_closed);
-	file_to_img(data, "exitopen.xpm", data->sprite.exit_open);
-	file_to_img(data, "shitwall.xpm", data->sprite.wall);
+	file_to_img(data, "dogo.xpm", &data->sprite.an_p[0]);
+	file_to_img(data, "rayman.xpm", &data->sprite.an_p[1]);
+	file_to_img(data, "coin.xpm", &data->sprite.coin);
+	// &data->sprite.an_c[0] = file_to_img(data, "coinf");
+	// &data->sprite.an_c[1] = file_to_img(data, "coinf");
+	// &data->sprite.an_c[2] = file_to_img(data, "coinf");
+	file_to_img(data, "eyefloor.xpm", &data->sprite.floor);
+	file_to_img(data, "exitclosed.xpm", &data->sprite.e_cl);
+	file_to_img(data, "exitopen.xpm", &data->sprite.e_op);
+	file_to_img(data, "shitwall.xpm", &data->sprite.wall);
 }
 
 void	init(t_data *data, char *str)
