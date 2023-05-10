@@ -6,7 +6,7 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:25:03 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/08 15:58:12 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/10 18:48:14 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ typedef struct s_data
 	char		**map;
 	int			move_count;
 	int			coin_count;
+	void		*enems;
 	t_pos		size;
 	t_pos		p_pos;
 	t_pos		e_pos;

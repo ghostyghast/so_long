@@ -6,7 +6,7 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:09:40 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/09 14:52:47 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/10 17:34:39 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int	pce_check(char **str, t_pce *pce)
 				pce->c += 1;
 			else if (str[xy.y][xy.x] == 'E')
 				pce->e += 1;
-			else if (str[xy.y][xy.x] != '1' && str[xy.y][xy.x] != '0')
+			else if (str[xy.y][xy.x] != '1' && str[xy.y][xy.x] != '0'
+					&& str[xy.y][xy.x] != 'X')
 				return (0);
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:07:57 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/09 14:16:36 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/10 17:30:40 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	get_start(char **map, t_flood *fl, int lw)
 
 int	valid_char(char c, t_info *info)
 {
-	if (c == '0' || c == 'C')
+	if (c == '0' || c == 'C' || c == 'X')
 		return (1);
 	else if (c == 'E')
 		info->exit = 1;

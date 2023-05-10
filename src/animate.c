@@ -6,7 +6,7 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:09:51 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/08 17:40:27 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/10 20:20:15 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,14 @@ int	animate(t_data *data)
 	data->sprite.player = anim_sprite(data->sprite.an_p, FRAMES);
 	render(data);
 	return (0);
+}
+
+t_pos	direction(t_pos pos)
+{
+	static int	dir;
+
+	if (dir == 0)
+		pos.x -= 1;
+	else if
+		
 }
