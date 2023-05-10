@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_var.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaligno <antoinemalignon@yahoo.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 15:46:53 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/08 16:55:06 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/09 00:50:54 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	file_to_img(t_data *data, char *str, void **p)
 	x = SPRITE_SIZE;
 	y = SPRITE_SIZE;
 	path = ft_strjoin("textures/", str);
-	*p = mlx_xpm_file_to_image(data->mlx, str, &x, &y);
+	*p = mlx_xpm_file_to_image(data->mlx, path, &x, &y);
 	free(path);
 }
 
