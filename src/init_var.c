@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_var.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaligno <antoinemalignon@yahoo.com>       +#+  +:+       +#+        */
+/*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 15:46:53 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/11 00:02:30 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/11 18:06:29 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,11 @@ void	textures(t_data *data)
 	// &data->sprite.an_c[0] = file_to_img(data, "coinf");
 	// &data->sprite.an_c[1] = file_to_img(data, "coinf");
 	// &data->sprite.an_c[2] = file_to_img(data, "coinf");
-	file_to_img(data, "eyefloor.xpm", &data->sprite.floor);
+	file_to_img(data, "shitwall.xpm", &data->sprite.floor);
 	file_to_img(data, "exitclosed.xpm", &data->sprite.e_cl);
 	file_to_img(data, "exitopen.xpm", &data->sprite.e_op);
-	file_to_img(data, "shitwall.xpm", &data->sprite.wall);
+	file_to_img(data, "eyefloor.xpm", &data->sprite.wall);
+	file_to_img(data, "player1.xpm", &data->sprite.enemy);
 }
 
 void	init(t_data *data, char *str)
@@ -79,6 +80,8 @@ void	init(t_data *data, char *str)
 	data->map = str_alloc(str, &data->size.y);
 	data->size.x = strline(data->map[0]);
 	get_pce(data);
+	enemy_spawncheck(data);
+	ft_printf("hi\n");
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, (SPRITE_SIZE * data->size.x),
 			(SPRITE_SIZE * data->size.y), "So_long");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaligno <antoinemalignon@yahoo.com>       +#+  +:+       +#+        */
+/*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:25:03 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/11 00:21:04 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/11 18:22:02 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,7 @@
 # include "libft.h"
 
 # define FRAMES 120
-# define ENEMY_SPEED 180
-
-// enum {
-// 	SPRITE_SIZE = 64,
-// 	FRAM_COIN = 3,
-// 	FRAM_PLYR = 2,
-// 	ON_KEYDOWN = 2,
-// 	ON_KEYUP = 3,
-// 	ON_DESTROY = 17,
-// 	KEY_UP = 126,
-// 	KEY_DOWN = 125,
-// 	KEY_LEFT = 123,
-// 	KEY_RIGHT = 124,
-// 	KEY_ESC = 53,
-// 	KEY_W = 13,
-// 	KEY_A = 0,
-// 	KEY_S = 1,
-// 	KEY_D = 2
-// };
+# define ENEMY_SPEED 50
 
 enum {
 	SPRITE_SIZE = 64,
@@ -48,16 +30,34 @@ enum {
 	ON_KEYDOWN = 2,
 	ON_KEYUP = 3,
 	ON_DESTROY = 17,
-	KEY_UP = 65362,
-	KEY_DOWN = 65364,
-	KEY_LEFT = 65361,
-	KEY_RIGHT = 65363,
-	KEY_ESC = 65307,
+	KEY_UP = 126,
+	KEY_DOWN = 125,
+	KEY_LEFT = 123,
+	KEY_RIGHT = 124,
+	KEY_ESC = 53,
 	KEY_W = 13,
 	KEY_A = 0,
 	KEY_S = 1,
 	KEY_D = 2
 };
+
+// enum {
+// 	SPRITE_SIZE = 64,
+// 	FRAM_COIN = 3,
+// 	FRAM_PLYR = 2,
+// 	ON_KEYDOWN = 2,
+// 	ON_KEYUP = 3,
+// 	ON_DESTROY = 17,
+// 	KEY_UP = 65362,
+// 	KEY_DOWN = 65364,			WSL keycodes
+// 	KEY_LEFT = 65361,
+// 	KEY_RIGHT = 65363,
+// 	KEY_ESC = 65307,
+// 	KEY_W = 13,
+// 	KEY_A = 0,
+// 	KEY_S = 1,
+// 	KEY_D = 2
+// };
 
 typedef struct s_pce
 {
@@ -97,15 +97,9 @@ typedef struct s_sprite
 	void	**an_c;
 	void	*e_cl;
 	void	*e_op;
-	void	*enemies;
+	void	*enemy;
 	void	**an_en;
 }	t_sprite;
-
-typedef struct s_enemy
-{
-	t_pos pos;
-	t_enemy *next;
-}	t_enemy;
 
 typedef struct s_data
 {
@@ -114,7 +108,8 @@ typedef struct s_data
 	char		**map;
 	int			move_count;
 	int			coin_count;
-	void		*enems;
+	int			enemy_count;
+	t_pos		*enemies;
 	t_pos		size;
 	t_pos		p_pos;
 	t_pos		e_pos;
@@ -124,6 +119,11 @@ typedef struct s_data
 int		ft_printf(const char *str, ...);
 char	*get_next_line(int fd);
 
+t_pos	direction(t_pos pos, int dir);
+void	printmap(char **map);
+void	enemy_spawncheck(t_data *data);
+void	move_enemies(t_pos *enemies, int enemy_count, char **map, t_data *data);
+int		check_and_move(char **map, t_pos *pos, int mode, t_data *data);
 void	render(t_data *data);
 int		animate(t_data *data);
 void	init(t_data *data, char *str);

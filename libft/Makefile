@@ -12,19 +12,17 @@ NAME = libft.a
 
 $(OBJS_DIR)%.o : %.c libft.h
 	@mkdir -p $(OBJS_DIR)
-	@echo "Compiling: $<"
 	@$(CC) $(CC_FLAGS) -c $< -o $@
 
 $(NAME): $(OBJECTS_PREFIXED)
 	@ar r $(NAME) $(OBJECTS_PREFIXED)
-	@echo "Libft Done !"
 
 all: $(NAME)
 
 clean:
-	rm -rf $(OBJS_DIR)
+	@rm -rf $(OBJS_DIR)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all

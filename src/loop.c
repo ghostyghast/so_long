@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaligno <antoinemalignon@yahoo.com>       +#+  +:+       +#+        */
+/*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:07:26 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/10 23:45:24 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:42:25 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	move_check(t_data *data, int y, int x)
 int	key_check(int key, t_data *data)
 {
 	if (key == KEY_ESC)
-		exit_prog(data, 0);
+		exit_prog(data, 2);
 	else if (key == KEY_UP || key == KEY_W)
 		move_check(data, data->p_pos.y -1, data->p_pos.x);
 	else if (key == KEY_LEFT || key == KEY_A)

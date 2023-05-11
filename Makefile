@@ -45,7 +45,7 @@ win: $(OBJS)
 	@$(CC) $(CFLAGS) $(SRCS) -o $(NAME) $(INCLUDES) $(MLX_WIN) $(LIB) 
 
 leak: $(OBJS)
-	@$(CC) $(LEAK) $(SRCS) -o $(NAME) $(INCLUDES) $(MLX_WIN) $(LIB) 
+	@$(CC) $(LEAK) $(SRCS) -o $(NAME) $(INCLUDES) $(LIB) 
 
 clean: 
 	@rm -f src/*.o

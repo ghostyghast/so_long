@@ -3,53 +3,87 @@
 /*                                                        :::      ::::::::   */
 /*   enemy_spawn.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaligno <antoinemalignon@yahoo.com>       +#+  +:+       +#+        */
+/*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 18:04:10 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/11 00:50:20 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/11 18:30:59 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	enemy_amount(char **map)
+int	check_pos(char **map, t_pos pos)
 {
-	int	enemy_count;
-	int	x;
+	char	c;
+	int		i;
+	t_pos	n_pos;
+
+	i = -1;
+	while (++i < 4)
+	{
+		n_pos = direction(pos, i);
+		c = map[n_pos.y][n_pos.x];
+		if (c != '1' && c != 'E')
+			return (1);
+	}
+	return (0);
+}
+
+int	enemy_counter(char **map)
+{
+	int		enemy_count;
+	t_pos	pos;
 
 	enemy_count = 0;
-	while (++map)
+	pos.y = -1;
+	while (map[++pos.y])
 	{
-		x = 0;
-		while (*map[x] != '\n' && *map[x])
+		pos.x = -1;
+		while (map[pos.y][++pos.x] != '\n' && map[pos.y][pos.x])
 		{
-			if (*map == 'X')
-				enemy_count += 1;
+			if (map[pos.y][pos.x] == 'X')
+			{
+				if (check_pos(map, pos))
+					enemy_count += 1;
+				else
+					map[pos.y][pos.x] = '0';
+			}
 		}
 	}
 	return (enemy_count);
 }
 
-void	enemy_position(char **map, t_pos **enemies)
+void	enemy_position(char **map, t_pos *enemies)
 {
 	t_pos	pos;
 	int		enem;
 
 	enem = -1;
 	pos.y = -1;
-	while (map[--pos.y])
+	while (map[++pos.y])
 	{
-		pos.x = 0;
-		while (map[pos.y][pos.x] != '\n' && map[pos.y][pos.x])
+		pos.x = -1;
+		while (map[pos.y][++pos.x] != '\n' && map[pos.y][pos.x])
 		{
-			if (map[pos.y][pos.x] == 'X' && enemies[++enem])
-				*enemies[enem] = pos;
+			if (map[pos.y][pos.x] == 'X')
+				enemies[++enem] = pos;
 		}
 	}
 }
 
+void	printmap(char **map)
+{
+	while (*map)
+	{
+		ft_printf("%s", *map);
+		map++;
+	}
+	ft_printf("\n");
+}
+
 void	enemy_spawncheck(t_data *data)
 {
-	
-	enemy = 0;
+	data->enemy_count = enemy_counter(data->map);
+	data->enemies = malloc(sizeof(t_pos) * data->enemy_count);
+	enemy_position(data->map, data->enemies);
 }
