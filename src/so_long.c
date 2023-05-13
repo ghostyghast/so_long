@@ -6,7 +6,7 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 16:50:10 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/11 18:32:10 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/13 19:19:05 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	exit_prog(t_data *data, int i)
 	freemap(data->map);
 	free(data->sprite.an_c);
 	free(data->sprite.an_p);
+	free(data->sprite.an_w);
 	free(data->enemies);
 	mlx_destroy_window(data->mlx, data->win);
-	system("leaks so_long");
 	exit(0);
 	return (0);
 }
@@ -45,7 +45,6 @@ int	main(int c, char **strs)
 	{
 		if (parser(strs[1]))
 		{
-			ft_printf("valid map!\n");
 			loop(strs[1]);
 			return (0);
 		}

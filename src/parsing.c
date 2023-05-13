@@ -6,7 +6,7 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:09:40 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/11 18:31:33 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/13 19:19:11 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,5 @@ int	parser(char *map)
 		}
 	}
 	freemap(str);
-	system("leaks so_long");
 	return (0);
 }

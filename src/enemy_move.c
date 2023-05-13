@@ -6,7 +6,7 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 00:15:18 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/11 18:29:16 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/11 20:10:51 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	check_and_move(char **map, t_pos *pos, int mode, t_data *data)
 
 	n_pos = direction(*pos, i);
 	c = map[n_pos.y][n_pos.x];
-	if (c != '1' && c != 'E')
+	if (c != '1' && c != 'E' && c != 'X' && c != 'O')
 	{
 		if (c == 'P' && mode == 0)
 			exit_prog(data, 0);
@@ -45,7 +45,7 @@ int	check_and_move(char **map, t_pos *pos, int mode, t_data *data)
 		}
 		return (1);
 	}
-	if (i > 3)
+	if (i == 3)
 		i = 0;
 	else
 		i++;

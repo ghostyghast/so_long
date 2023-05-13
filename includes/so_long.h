@@ -6,7 +6,7 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:25:03 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/11 18:22:02 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/13 18:50:30 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@
 # include <mlx.h>
 # include "libft.h"
 
-# define FRAMES 120
-# define ENEMY_SPEED 50
+# define FRAMES 60
+# define ENEMY_SPEED 20
 
 enum {
 	SPRITE_SIZE = 64,
-	FRAM_COIN = 3,
+	FRAM_COIN = 2,
+	FRAM_WALL = 12,
 	FRAM_PLYR = 2,
 	ON_KEYDOWN = 2,
 	ON_KEYUP = 3,
@@ -90,6 +91,7 @@ typedef struct s_info
 typedef struct s_sprite
 {
 	void	*wall;
+	void	**an_w;
 	void	*plyr;
 	void	**an_p;
 	void	*floor;
@@ -98,7 +100,6 @@ typedef struct s_sprite
 	void	*e_cl;
 	void	*e_op;
 	void	*enemy;
-	void	**an_en;
 }	t_sprite;
 
 typedef struct s_data

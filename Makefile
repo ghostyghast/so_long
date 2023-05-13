@@ -10,7 +10,7 @@ WIN = gcc
 
 RAW = gcc
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra 	#-fsanitize=address -g3
 
 INCLUDES = -Iincludes -Ilibft
 

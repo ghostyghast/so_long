@@ -6,7 +6,7 @@
 /*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 15:46:53 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/11 18:06:29 by amaligno         ###   ########.fr       */
+/*   Updated: 2023/05/13 19:08:39 by amaligno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,23 +54,39 @@ void	file_to_img(t_data *data, char *str, void **p)
 	free(path);
 }
 
+void	textures_2(t_data *data)
+{
+	file_to_img(data, "eye_wall.xpm", &data->sprite.an_w[0]);
+	file_to_img(data, "eye_wall2.xpm", &data->sprite.an_w[1]);
+	file_to_img(data, "eye_wall3.xpm", &data->sprite.an_w[2]);
+	file_to_img(data, "eye_wall4.xpm", &data->sprite.an_w[3]);
+	file_to_img(data, "eye_wall5.xpm", &data->sprite.an_w[4]);
+	file_to_img(data, "eye_wall6.xpm", &data->sprite.an_w[5]);
+	file_to_img(data, "eye_wall7.xpm", &data->sprite.an_w[6]);
+	file_to_img(data, "eye_wall8.xpm", &data->sprite.an_w[7]);
+	file_to_img(data, "eye_wall9.xpm", &data->sprite.an_w[8]);
+	file_to_img(data, "eye_wall10.xpm", &data->sprite.an_w[9]);
+	file_to_img(data, "eye_wall11.xpm", &data->sprite.an_w[10]);
+	file_to_img(data, "eye_wall12.xpm", &data->sprite.an_w[11]);
+}
+
 void	textures(t_data *data)
 {
 	data->sprite.an_c = malloc(sizeof(void *) * (FRAM_COIN + 1));
 	data->sprite.an_p = malloc(sizeof(void *) * (FRAM_PLYR + 1));
+	data->sprite.an_w = malloc(sizeof(void *) * (FRAM_WALL + 1));
+	data->sprite.an_w[12] = NULL;
 	data->sprite.an_c[FRAM_COIN] = NULL;
 	data->sprite.an_p[FRAM_PLYR] = NULL;
-	file_to_img(data, "dogo.xpm", &data->sprite.an_p[0]);
-	file_to_img(data, "rayman.xpm", &data->sprite.an_p[1]);
-	file_to_img(data, "coin.xpm", &data->sprite.coin);
-	// &data->sprite.an_c[0] = file_to_img(data, "coinf");
-	// &data->sprite.an_c[1] = file_to_img(data, "coinf");
-	// &data->sprite.an_c[2] = file_to_img(data, "coinf");
-	file_to_img(data, "shitwall.xpm", &data->sprite.floor);
+	file_to_img(data, "dogo1.xpm", &data->sprite.an_p[0]);
+	file_to_img(data, "dogo4.xpm", &data->sprite.an_p[1]);
+	file_to_img(data, "bone1.xpm", &data->sprite.an_c[0]);
+	file_to_img(data, "bone2.xpm", &data->sprite.an_c[1]);
+	file_to_img(data, "floor.xpm", &data->sprite.floor);
 	file_to_img(data, "exitclosed.xpm", &data->sprite.e_cl);
 	file_to_img(data, "exitopen.xpm", &data->sprite.e_op);
-	file_to_img(data, "eyefloor.xpm", &data->sprite.wall);
-	file_to_img(data, "player1.xpm", &data->sprite.enemy);
+	file_to_img(data, "ghost.xpm", &data->sprite.enemy);
+	textures_2(data);
 }
 
 void	init(t_data *data, char *str)
@@ -81,7 +97,6 @@ void	init(t_data *data, char *str)
 	data->size.x = strline(data->map[0]);
 	get_pce(data);
 	enemy_spawncheck(data);
-	ft_printf("hi\n");
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, (SPRITE_SIZE * data->size.x),
 			(SPRITE_SIZE * data->size.y), "So_long");
