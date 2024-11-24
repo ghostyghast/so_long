@@ -1,65 +1,45 @@
-NAME := so_long
+SRC = $(wildcard src/*.c)
 
-SRCS = $(wildcard src/*.c)
+OBJ = $(SRC:.c=.o)
 
-OBJS = $(SRCS:.c=.o)
+CC = cc
 
-CC = gcc
+FLAGS = -Wall -Werror -Wextra -g3 -O3 #-fsanitize=address
 
-WIN = gcc
+ifeq ($(shell uname), Linux)
+	MLX = lib/minilibx-linux
+	LINKER_FLAGS = -lXext -lX11 -lz
+else
+	MLX = lib/minilibx_opengl
+	LINKER_FLAGS = -framework OpenGL -framework AppKit
+endif
 
-RAW = gcc
+INCLUDES = -I includes -I $(MLX) -I ./lib/Libft
 
-CFLAGS = -Wall -Werror -Wextra 	#-fsanitize=address -g3
-
-INCLUDES = -Iincludes -Ilibft
-
-LIB = -L./libft -lft
-
-MLX = -lmlx -framework OpenGL -framework AppKit
-
-MLX_WIN = -lmlx -lXext -lX11
-
-LEAK = -Wall -Werror -Wextra -fsanitize=address -g3
+LINKER = -L./lib/Libft -L $(MLX) -lft -lm -lmlx $(LINKER_FLAGS)
 
 NAME = so_long
 
 %.o : %.c
-	@$(CC) $(INCLUDES) -c -o $@ $< 
+	@echo Compiling $<
+	$(CC) $(FLAGS) $(INCLUDES) -c -o $@ $< 
 
-$(NAME): $(OBJS)
-	@make -C ./libft
-	@$(CC) $(CFLAGS) $(INCLUDES) $(MLX) -o $@ $(LIB) $(SRCS)
+$(NAME) : $(OBJ)
+	@make -C $(MLX)
+	@make -C lib/Libft
+	$(CC) $(FLAGS) $(OBJ) -o $(NAME) $(LINKER)
 
-$(LEAK): 
-	@$(CC) $(LEAK) $(INCLUDES) $(MLX) -o $@ $(LIB) $(SRCS)
+all : $(NAME)
+	@echo $(NAME) Done !
 
-$(RAW):
-	@make -C ./libft 
-	@$(RAW) $(MLX) -o $(NAME) $(SRCS)
+clean :
+	@rm -rf $(OBJ)
+	@make clean -C ./lib/Libft
 
-all: $(NAME)
+fclean : clean
+	@rm -rf $(NAME)
+	@make clean -C ./lib/Libft
 
-win: $(OBJS)
-	@make -C ./libft
-	@$(CC) $(CFLAGS) $(SRCS) -o $(NAME) $(INCLUDES) $(MLX_WIN) $(LIB) 
+re : fclean all
 
-leak: $(OBJS)
-	@$(CC) $(LEAK) $(SRCS) -o $(NAME) $(INCLUDES) $(LIB) 
-
-clean: 
-	@rm -f src/*.o
-	@make clean -C ./libft
-	@echo "clean!"
-
-fclean: clean
-	@rm -f $(NAME)
-	@make fclean -C ./libft
-	@echo "fclean!"
-
-re: fclean all
-
-# $(NAME): $(OBJS)
-# 	@make -C ./libft 
-# 	@$(CC) $(CFLAGS) $(INCLUDES) $(MLX) -o $@ $(OBJS) -lft -L./libft
-
+.PHONY : all clean fclean re

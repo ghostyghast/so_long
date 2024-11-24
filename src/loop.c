@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pringles <pringles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:07:26 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/11 17:42:25 by amaligno         ###   ########.fr       */
+/*   Updated: 2024/11/24 14:36:49 by pringles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	render(t_data *data)
 	char	*str;
 
 	xy.y = 0;
-	mlx_clear_window(data->mlx, data->win);
 	while (data->map[xy.y])
 	{
 		xy.x = 0;
@@ -76,7 +75,7 @@ void	move_check(t_data *data, int y, int x)
 	else
 	{
 		if (data->map[y][x] == 'C' && --data->coin_count == 0)
-				data->map[data->e_pos.y][data->e_pos.x] = 'O';
+			data->map[data->e_pos.y][data->e_pos.x] = 'O';
 		data->map[data->p_pos.y][data->p_pos.x] = '0';
 		data->map[y][x] = 'P';
 		data->p_pos.x = x;
