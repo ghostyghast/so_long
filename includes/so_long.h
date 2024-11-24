@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaligno <amaligno@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pringles <pringles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 16:25:03 by amaligno          #+#    #+#             */
-/*   Updated: 2023/05/13 18:50:30 by amaligno         ###   ########.fr       */
+/*   Updated: 2024/11/24 15:05:51 by pringles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,18 @@
 # define FRAMES 60
 # define ENEMY_SPEED 20
 
-enum {
+enum
+{
 	SPRITE_SIZE = 64,
 	FRAM_COIN = 2,
 	FRAM_WALL = 12,
 	FRAM_PLYR = 2,
+};
+
+# ifdef __APPLE__
+
+enum e_keys
+{
 	ON_KEYDOWN = 2,
 	ON_KEYUP = 3,
 	ON_DESTROY = 17,
@@ -41,6 +48,26 @@ enum {
 	KEY_S = 1,
 	KEY_D = 2
 };
+
+# elif __linux__
+# include "X11/keysym.h"
+
+enum 
+{
+	ON_KEYDOWN = 2,
+	ON_KEYUP = 3,
+	ON_DESTROY = 17,
+	KEY_UP = XK_Up,
+	KEY_DOWN = XK_Down,
+	KEY_LEFT = XK_Left,
+	KEY_RIGHT = XK_Right,
+	KEY_ESC = XK_Escape,
+	KEY_W = XK_w,
+	KEY_A = XK_a,
+	KEY_S = XK_s,
+	KEY_D = XK_d
+};
+#endif
 
 // enum {
 // 	SPRITE_SIZE = 64,

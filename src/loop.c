@@ -6,7 +6,7 @@
 /*   By: pringles <pringles@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:07:26 by amaligno          #+#    #+#             */
-/*   Updated: 2024/11/24 14:36:49 by pringles         ###   ########.fr       */
+/*   Updated: 2024/11/24 15:06:04 by pringles         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	key_check(int key, t_data *data)
 
 void	loop(char *str)
 {
-	t_data	data;
+	t_data		data;
 
 	init(&data, str);
 	mlx_loop_hook(data.mlx, animate, &data);
