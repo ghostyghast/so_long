@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<!-- <img src=""> </img>-->
+<img src="docs/assets/so_long.gif" height=300px> </img>  
 *A 2D maze game*  
 [![42 School](https://img.shields.io/badge/School-000000?style=flat-square&logo=42&logoColor=white)](https://42.fr/)
 [![C](https://img.shields.io/badge/C-00599C?style=flat-square&logo=c&logoColor=white)](https://en.wikipedia.org/wiki/C_(programming_language))
