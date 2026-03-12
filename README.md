@@ -62,6 +62,7 @@ Collect all the bones to open the exit, then head there to win!
 ### Map Configuration
 
 **Rules**
+- Must be a .ber file
 - Map must be rectangular
 - Empty space must be surrounded by wall
 - Must have at least 1 coin
